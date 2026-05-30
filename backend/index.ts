@@ -12,7 +12,35 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/conversation", async (req, res) => {
+//auth routes
+
+//signup
+app.post("/signup", async (req, res) => {
+    
+})
+
+//signin
+app.post("/signin", async (req, res) => {
+    
+})
+
+
+
+//past convos get
+app.get("/conversations", async(req, res) =>{
+
+})
+
+app.get("/conversation/:conversationId", async(req, res) =>{
+    
+})
+
+  
+
+// LLM Routes
+
+//initial query
+app.post("/strata_ask", async (req, res) => {
     // step 1 - get the query from the user
     const query = req.body.query;
 
@@ -65,6 +93,14 @@ app.post("/conversation", async (req, res) => {
     // step 8 - close the event stream
     res.end();
 });
+
+// follow up query
+app.post("/strata_ask/follow_up", (req, res) => {
+    //step 1 - get existing chat from the db,
+    //step 2 - froward teh full history to teh llm
+    //step 2.5 - TODO: do context engineering here, intial setup messanges suumamry
+    //step 3 - steam it to the user
+})
 
 app.listen(3000);
 
