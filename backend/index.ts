@@ -57,17 +57,10 @@ app.post("/conversation", async (req, res) => {
         res.write(content);
     }
 
-    // step 7 - parse answer and follow-ups from the structured response
-    const answerMatch = fullText.match(/<ANSWER>([\s\S]*?)<\/ANSWER>/);
-    const followUpMatch = fullText.match(/<FOLLOW_UP>([\s\S]*?)<\/FOLLOW_UP>/);
-
-    const answer = answerMatch?.[1]?.trim() ?? '';
-    const followUpText = followUpMatch?.[1]?.trim() ?? '';
-    const followUps = (followUpText.match(/<question>([\s\S]*?)<\/question>/g) || [])
-        .map(q => q.replace(/<\/?question>/g, '').trim());
-
-    res.write("\n----------SOURCES----------\n");
-    webSearchResults.forEach(result => res.write(JSON.stringify(result) + "\n"));
+    // step 7 - also stream back the sources and the follow up questions
+    res.write("\n\n<SOURCES>\n");
+    res.write(JSON.stringify(webSearchResults.map(result => ({ url: result.url }))));
+    res.write("\n</SOURCES>\n");
 
     // step 8 - close the event stream
     res.end();
