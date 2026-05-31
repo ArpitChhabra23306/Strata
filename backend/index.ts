@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { tavily } from '@tavily/core';
 import OpenAI from "openai";
 import { PROMPT_TEMPLATE, SYSTEM_PROMPT } from "./prompt";
+import { prisma } from "./db";
 
 dotenv.config();
 
@@ -11,18 +12,6 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const app = express();
 
 app.use(express.json());
-
-//auth routes
-
-//signup
-app.post("/signup", async (req, res) => {
-    
-})
-
-//signin
-app.post("/signin", async (req, res) => {
-    
-})
 
 
 

@@ -1,5 +1,21 @@
-# Frontend
+# bun-react-tailwind-shadcn-template
 
-This is a minimal frontend scaffold for the AI Browzer project. Open `index.html` in a browser during development.
+To install dependencies:
 
-To connect to the backend, call the API endpoints under `/api` (adjust host/port as needed).
+```bash
+bun install
+```
+
+To start a development server:
+
+```bash
+bun dev
+```
+
+To run for production:
+
+```bash
+bun start
+```
+
+This project was created using `bun init` in bun v1.3.14. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
